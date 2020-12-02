@@ -6,5 +6,5 @@
 - এর পরে file upload করার জন্য move_uploaded_file($tmp_name ,'images/'.$newName); লিখতে হবে । <br><br>
 :star: **NOTE:** $tmp_name= tmp_name/con নাম/কানেকশন।<br>
 :star: **NOTE:** 'images/'= directory file location কোন জায়গায়/folder এ file save হবে ।<br>
-:star: **NOTE:**.$newName= File new naem/extention কি হবে ।<br><br>
+:star: **NOTE:**.$newName= File new name/extention কি হবে ।<br><br>
 - এর পরে Validation করে File Upload করতে পারি । 
