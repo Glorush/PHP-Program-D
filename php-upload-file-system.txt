@@ -1,0 +1,60 @@
+<?php
+/*
+	$content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor tempor ligula, sed gravida justo varius sed. Cras sodales nisl turpis, in viverra purus condimentum auctor.";
+
+	echo $content;
+	echo("<br>");
+
+	//strint thaka array
+	$new_array = explode(" " ,$content);
+	echo"<pre>";
+	print_r($new_array) ;
+	echo "</pre>";
+
+	echo "<br>";
+
+	//array thaka string
+	$ex_content = implode(", ",$new_array);
+	echo $ex_content;
+	echo "<br>";
+
+	//array short
+	$short_Array = array_slice($new_array,0,7);
+
+	// shoart again-implode
+	$new_content = implode(" ", $short_Array);
+	echo $new_content."..."; 
+*/
+
+
+	if (isset($_POST['file_upload'])) {
+		
+		$picter = $_FILES['picter'];
+		print_r($picter);
+		$picter_name = $_FILES['picter']['name'];
+		$tmp_name = $_FILES['picter']['tmp_name'];
+		$size = $_FILES['picter']['size'];
+		// $dir ="images/".$picter_name;
+
+		$extention = pathinfo($picter_name, PATHINFO_EXTENSION);
+		if ($extention != 'png' AND $extention != 'PNG' AND $extention != 'JPG' AND $extention != 'jpg' AND $extention != 'jpeg' AND $extention != 'JPEG' AND $extention != 'GIF' AND $extention != 'gif' ) {
+			
+			echo "<p style='color:red;font-size:18px;'>plese attach jpeg/jpg/png/gif.</p>";
+		}
+		else if($size > 3145728){
+			echo "<p style='color:red; font-size:18px;'>File is large</p>";
+		}
+		else{
+			$newName = time().".".$extention;
+			move_uploaded_file($tmp_name ,'images/'.$newName);
+			echo "<p style='color:green; font-size:18px;'>upload seccessfull</p>";
+		}
+	}
+
+
+?>
+
+<form action="" method="POST" enctype="multipart/form-data">
+	<input type="file" name="picter" value="Upload file">
+	<input type="submit" name="file_upload" value="Upload">
+</form>
